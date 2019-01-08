@@ -3,7 +3,7 @@ import socket, sys
 
 #instantiate tcp/ip socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-if len(sys.argv) < 2:
+if len(sys.argv) < 3:
     print "not enough args"
     sys.exit(1)
 
@@ -30,6 +30,8 @@ while True:
             print >>sys.stderr, 'received "%s"' % d
             if d:
                 print >>sys.stderr, 'sending buffer back to client'
+                if len(sys.argv) == 4:
+                    d = d + '\nhellp from %s' % sys.argv[3]
                 conn.sendall(d)
             else:
                 print >>sys.stderr, 'buffer is empty, connection will now close'

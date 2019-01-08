@@ -20,7 +20,7 @@ try:
     expd = len(msg)
 
     while recv < expd:
-        d = sock.recv(16)
+        d = sock.recv(128)
         recv += len(d)
         print >>sys.stderr, 'recevied "%s"' % d
 
